@@ -3,8 +3,9 @@ import { lazy, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import Loader from "./components/Loader/Loader";
+
 import Layout from "./components/Layout/Layout";
+import Loader from "./components/Loader/Loader";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const CatalogPage = lazy(() => import("./pages/Catalog/Catalog"));

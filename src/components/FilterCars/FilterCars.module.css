@@ -22,7 +22,7 @@
 }
 
 .control {
-  background-color: #f3f4f6;
+  background-color: var(--inputs);
   border: none;
   border-radius: 9999px;
   height: 40px;
@@ -65,8 +65,8 @@
 }
 
 .searchBtn {
-  background-color: #3366ff;
-  color: #fff;
+  background-color: var(--button);
+  color: var(--white);
   border: none;
   border-radius: 9999px;
   height: 40px;
@@ -76,7 +76,32 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
+.selectWrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;
+}
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+}
 .searchBtn:hover {
-  background-color: #254eda;
+  background-color: var(--button-hover);
+}
+.icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+  font-size: 1.2rem;
+  color: #666;
+}
+.open .icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+.selectWrapper:focus-within .icon {
+  transform: translateY(-50%) rotate(180deg);
 }

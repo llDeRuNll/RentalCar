@@ -4,24 +4,8 @@
 
   grid-template-columns: repeat(4, minmax(240px, 1fr));
   margin-bottom: 24px;
-}
-
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(3, minmax(240px, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(240px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+  padding-left: 120px;
+  padding-right: 120px;
 }
 
 .loading {
@@ -34,9 +18,9 @@
   display: block;
   margin: 0 auto 32px;
   padding: 8px 24px;
-  border: 1px solid #2979ff;
-  background: #fff;
-  color: #2979ff;
+  border: 1px solid var(--button);
+  background: var(--white);
+  color: var(--button);
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
@@ -44,6 +28,10 @@
 }
 
 .loadMoreBtn:hover {
-  background: #2979ff;
-  color: #fff;
+  background: var(--button-hover);
+  color: var(--white);
+}
+.filter {
+  margin-top: 84px;
+  margin-bottom: 56px;
 }

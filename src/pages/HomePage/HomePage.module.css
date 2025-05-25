@@ -1,5 +1,3 @@
-/* HomePage.module.css */
-
 .homePageContainer {
   background-image: image-set(
     url("/img/Hero_image.jpg") 1x,
@@ -10,7 +8,7 @@
   background-repeat: no-repeat;
 
   width: 100%;
-  height: 80vh;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -26,7 +24,7 @@
   gap: 16px;
 
   text-align: center;
-  color: #fff;
+  color: var(--white);
 }
 
 .homepagetextWrapper > h1 {
@@ -46,8 +44,8 @@
 .ctaButton {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #2563eb;
-  color: #fff;
+  background-color: var(--button);
+  color: var(--white);
   font-size: 18px;
   font-weight: 600;
   border-radius: 8px;
@@ -57,4 +55,5 @@
 
 .ctaButton:hover {
   background-color: #1e40af;
+  color: var(--white);
 }

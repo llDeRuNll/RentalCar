@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import s from "./CatalogCar.module.css";
 
-const CatalogCar = ({ car }) => {
+const CatalogCar = ({ car, isFavorite, onToggleFavorite }) => {
   const {
     id,
     year,
@@ -20,6 +21,10 @@ const CatalogCar = ({ car }) => {
 
   return (
     <div className={s.card}>
+      <div className={s.favoriteIcon} onClick={onToggleFavorite}>
+        {isFavorite ? <FaHeart /> : <FaRegHeart />}
+      </div>
+
       <div className={s.imageWrapper}>
         <img src={img} alt={`${brand} ${model}`} className={s.image} />
       </div>

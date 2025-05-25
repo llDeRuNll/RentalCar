@@ -3,6 +3,7 @@ import s from "./Catalog.module.css";
 import CatalogCar from "../../components/CatalogCar/CatalogCar";
 import FilterCars from "../../components/FilterCars/FilterCars";
 import Loader from "../../components/Loader/Loader";
+
 const API_URL = "https://car-rental-api.goit.global/cars";
 
 const Catalog = () => {
@@ -17,6 +18,21 @@ const Catalog = () => {
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const prevFilters = useRef();
+
+  const [favorites, setFavorites] = useState(() => {
+    const stored = localStorage.getItem("favorites");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+    );
+  };
 
   useEffect(() => {
     if (JSON.stringify(prevFilters.current) !== JSON.stringify(filters)) {
@@ -63,10 +79,18 @@ const Catalog = () => {
 
   return (
     <div>
-      <FilterCars onSearch={setFilters} />
+      <div className={s.filter}>
+        <FilterCars onSearch={setFilters} />
+      </div>
+
       <div className={s.grid}>
         {cars.map((car) => (
-          <CatalogCar key={car.id} car={car} />
+          <CatalogCar
+            key={car.id}
+            car={car}
+            isFavorite={favorites.includes(car.id)}
+            onToggleFavorite={() => toggleFavorite(car.id)}
+          />
         ))}
       </div>
 

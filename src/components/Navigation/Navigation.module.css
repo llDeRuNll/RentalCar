@@ -16,7 +16,7 @@
   gap: 32px;
 }
 .activeLink {
-  color: #0b44cd;
+  color: var(--button);
   padding: 10px;
   transition: all 250ms linear;
   &:hover {

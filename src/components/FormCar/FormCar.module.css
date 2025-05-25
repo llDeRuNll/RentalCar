@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-  border: 1px solid #dadde1;
+  border: 1px solid var(--inputs);
   border-radius: 10px;
   padding: 32px;
   width: 576px;
@@ -43,25 +43,128 @@
   padding: 12px 20px;
   width: 570px;
   height: 48px;
-  background: #f7f7f7;
-  &:hover {
-    background: #e2e0e0;
-  }
-  &:focus {
-    background: #e2e0e0;
-    color: #4e5055;
-  }
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
-    background-color: #f7f7f7 !important;
-    -webkit-box-shadow: 0 0 0 1000px #f7f7f7 inset !important;
-    -webkit-text-fill-color: #4e5055 !important;
-    transition: background-color 5000s ease-in-out 0s;
-  }
+  background: var(--inputs);
+}
+.formField:hover {
+  background: var(--grey);
+}
+.formField:focus {
+  background: #e2e0e0;
+  color: #4e5055;
+}
+.formField:-webkit-autofill,
+.formField:-webkit-autofill:hover,
+.formField:-webkit-autofill:focus {
+  background-color: var(--inputs) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--inputs) inset !important;
+  -webkit-text-fill-color: #4e5055 !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 .error {
   color: #2e398a;
   padding: 0;
   margin: 0;
+}
+.submitButton {
+  color: var(--white);
+  background-color: var(--button);
+  transition: background 0.2s, color 0.2s;
+}
+.submitButton:hover,
+.submitButton:focus {
+  background-color: var(--button-hover);
+}
+
+/* DatePicker Global Styles */
+:global(.react-datepicker.react-datepicker__month-container) {
+  background-color: #f7f7f7;
+}
+:global(.react-datepicker) {
+  font-family: var(--second-family);
+  border: 1px solid #3470ff;
+  overflow: hidden;
+  border-radius: 12px;
+}
+:global(.react-datepicker__current-month),
+:global(.react-datepicker-time__header),
+:global(.react-datepicker-year-header) {
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+  color: #101828;
+}
+:global(.react-datepicker__header) {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #3470ff;
+}
+:global(h2.react-datepicker__current-month) {
+  margin-bottom: 14px;
+  background-color: #f7f7f7;
+}
+:global(.react-datepicker__day-name) {
+  font-family: var(--second-family);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  color: #8d929a;
+}
+:global(.react-datepicker__navigation-icon::before),
+:global(.react-datepicker__year-read-view--down-arrow),
+:global(.react-datepicker__month-read-view--down-arrow),
+:global(.react-datepicker__month-year-read-view--down-arrow) {
+  border-color: #3470ff;
+  border-style: solid;
+  border-width: 2px 2px 0 0;
+  content: "";
+  display: block;
+  height: 9px;
+  position: absolute;
+  top: 6px;
+  width: 9px;
+}
+:global(.react-datepicker__day),
+:global(.react-datepicker__time-name) {
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: #101828;
+}
+:global(.react-datepicker__day--today),
+:global(.react-datepicker__month-text--today),
+:global(.react-datepicker__quarter-text--today),
+:global(.react-datepicker__year-text--today) {
+  border-radius: 32px;
+  background-color: #3470ff;
+  color: #f7f7f7;
+}
+:global(.react-datepicker__day--selected),
+:global(.react-datepicker__day--in-selecting-range),
+:global(.react-datepicker__day--in-range),
+:global(.react-datepicker__month-text--selected),
+:global(.react-datepicker__month-text--in-selecting-range),
+:global(.react-datepicker__month-text--in-range),
+:global(.react-datepicker__quarter-text--selected),
+:global(.react-datepicker__quarter-text--in-selecting-range),
+:global(.react-datepicker__quarter-text--in-range),
+:global(.react-datepicker__year-text--selected),
+:global(.react-datepicker__year-text--in-selecting-range),
+:global(.react-datepicker__year-text--in-range) {
+  border-radius: 32px;
+  background-color: #0b44cd;
+  color: #fff;
+}
+.datePicker {
+  outline: transparent;
+  border: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+  border-radius: 12px;
+  padding: 12px 20px;
+  width: 570px;
+  height: 48px;
+  background-color: var(--inputs);
 }

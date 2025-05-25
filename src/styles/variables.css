@@ -1,0 +1,13 @@
+:root {
+  /* Fonts */
+  --font-family: "Manrope", sans-serif;
+
+  --white: #ffffff;
+  --inputs: #f7f7f7;
+  --badges: #f2f4f7;
+  --grey-light: #dadde1;
+  --button-hover: #0b44cd;
+  --button: #3470ff;
+  --gray: #8e929a;
+  --main: #101828;
+}

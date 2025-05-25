@@ -1,8 +1,8 @@
-// src/pages/CatalogItem/CatalogItem.jsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import CatalogCarItem from "../../components/CatalogCarItem/CatalogCarItem";
+import Loader from "../../components/Loader/Loader";
 
 const API_URL = "https://car-rental-api.goit.global/cars";
 
@@ -16,7 +16,7 @@ const CatalogCarPage = () => {
     const fetchCar = async () => {
       try {
         const res = await fetch(`${API_URL}/${id}`);
-        if (!res.ok) throw new Error(`Статус ${res.status}`);
+        if (!res.ok) throw new Error(`Status ${res.status}`);
         const data = await res.json();
         setCar(data);
       } catch (err) {
@@ -28,9 +28,14 @@ const CatalogCarPage = () => {
     fetchCar();
   }, [id]);
 
-  if (loading) return <div>Завантаження автомобіля...</div>;
-  if (error) return <div>Помилка: {error}</div>;
-  if (!car) return <div>Автомобіль не знайдено</div>;
+  if (loading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  if (error) return <div>error {error}</div>;
+  if (!car) return <div>Auto not founded</div>;
 
   return <CatalogCarItem car={car} />;
 };

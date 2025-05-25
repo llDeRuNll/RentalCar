@@ -14,42 +14,51 @@
   justify-content: center;
   width: 640px;
 }
+
 .imageDescription {
   width: 100%;
   border-radius: 19px;
   height: auto;
 }
+
 .containerInformation {
   & > h2 {
     font-family: var(--font-family);
     font-weight: 600;
     font-size: 24px;
     line-height: 1.33333;
-
     color: #101828;
+    margin-bottom: 16px;
   }
+
   & > p {
     font-weight: 500;
     font-size: 16px;
     line-height: 1.25;
+    margin-bottom: 16px;
   }
-  & > ul li {
+
+  & > ul {
+    list-style: none;
+
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  & > ul > li {
     display: flex;
     align-items: center;
     column-gap: 8px;
+    margin-bottom: 16px;
   }
 }
-.containerInformation > ul li:not(:last-child) {
-  margin-bottom: 16px;
-}
-.containerInformation > ul li:last-child {
-  margin-bottom: 110px;
-}
+
 .idSpan {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
   color: #8d929a;
+  padding: 16px;
 }
 
 .adressMilleage {
@@ -62,6 +71,7 @@
     align-items: center;
   }
 }
+
 .currencyContainer {
   display: flex;
   align-items: center;
@@ -71,6 +81,7 @@
   color: #3470ff;
   margin-bottom: 32px;
 }
+
 .currencyDescription {
   margin-bottom: 68px;
 }
