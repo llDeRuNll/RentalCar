@@ -1,16 +1,25 @@
 import { useState, useEffect, useRef } from "react";
-
 import s from "./Catalog.module.css";
 import CatalogCar from "../../components/CatalogCar/CatalogCar";
+import FilterCars from "../../components/FilterCars/FilterCars";
+
 const API_URL = "https://car-rental-api.goit.global/cars";
 
-const Catalog = ({ filters = {} }) => {
+const Catalog = () => {
+  // тримаємо локальний стан фільтрів
+  const [filters, setFilters] = useState({
+    brand: "",
+    rentalPrice: "",
+    carMileage: { from: "", to: "" },
+  });
+
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const prevFilters = useRef();
 
+  // якщо змінилися самі фільтри — скидати сторінку
   useEffect(() => {
     if (JSON.stringify(prevFilters.current) !== JSON.stringify(filters)) {
       prevFilters.current = filters;
@@ -19,6 +28,7 @@ const Catalog = ({ filters = {} }) => {
     }
   }, [filters]);
 
+  // запит машин
   useEffect(() => {
     const fetchCars = async () => {
       setLoading(true);
@@ -28,15 +38,14 @@ const Catalog = ({ filters = {} }) => {
       if (filters.brand) params.append("brand", filters.brand);
       if (filters.rentalPrice)
         params.append("rentalPrice", filters.rentalPrice);
-      if (filters.carMileage?.from)
+      if (filters.carMileage.from)
         params.append("minMileage", filters.carMileage.from);
-      if (filters.carMileage?.to)
+      if (filters.carMileage.to)
         params.append("maxMileage", filters.carMileage.to);
 
       try {
         const res = await fetch(`${API_URL}?${params.toString()}`);
         const { cars: newCars, totalPages } = await res.json();
-
         setCars((prev) => (page === 1 ? newCars : [...prev, ...newCars]));
         setHasMore(page < totalPages);
       } catch (err) {
@@ -51,12 +60,14 @@ const Catalog = ({ filters = {} }) => {
     page,
     filters.brand,
     filters.rentalPrice,
-    filters.carMileage?.from,
-    filters.carMileage?.to,
+    filters.carMileage.from,
+    filters.carMileage.to,
   ]);
 
   return (
     <div>
+      {/* передаємо колбек, який викликається по кліку Search */}
+      <FilterCars onSearch={setFilters} />
       <div className={s.grid}>
         {cars.map((car) => (
           <CatalogCar key={car.id} car={car} />
@@ -66,10 +77,7 @@ const Catalog = ({ filters = {} }) => {
       {loading && <p className={s.loading}>Loading...</p>}
 
       {!loading && hasMore && (
-        <button
-          className={s.loadMoreBtn}
-          onClick={() => setPage((prev) => prev + 1)}
-        >
+        <button className={s.loadMoreBtn} onClick={() => setPage((p) => p + 1)}>
           Load more
         </button>
       )}

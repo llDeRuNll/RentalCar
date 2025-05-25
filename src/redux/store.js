@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import {
   persistStore,
   persistReducer,
@@ -19,7 +18,6 @@ const persistConfig = {
   storage,
 };
 
-// Обов'язково передаємо reducer як другий аргумент
 const persistedCarsReducer = persistReducer(persistConfig, carsReducer);
 
 export const store = configureStore({

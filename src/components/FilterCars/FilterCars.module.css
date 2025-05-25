@@ -1,0 +1,82 @@
+.filterWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 16px;
+
+  width: fit-content;
+  margin: 0 auto 24px;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterItem label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #545f7d;
+  margin-bottom: 4px;
+}
+
+.control {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 9999px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  color: #101828;
+  outline: none;
+}
+
+.control.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.control.select::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #101828;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.mileageWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.mileageWrapper .control {
+  width: 80px;
+  text-align: center;
+}
+
+.searchBtn {
+  background-color: #3366ff;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  height: 40px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.searchBtn:hover {
+  background-color: #254eda;
+}

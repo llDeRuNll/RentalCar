@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Асинхронний thunk для отримання списку машин
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
   async (params = {}, { rejectWithValue }) => {
@@ -17,7 +16,6 @@ export const fetchCars = createAsyncThunk(
   }
 );
 
-// Асинхронний thunk для отримання деталей однієї машини
 export const fetchCarById = createAsyncThunk(
   "cars/fetchCarById",
   async (id, { rejectWithValue }) => {
@@ -32,7 +30,6 @@ export const fetchCarById = createAsyncThunk(
   }
 );
 
-// Асинхронний thunk для отримання всіх брендів
 export const fetchBrands = createAsyncThunk(
   "cars/fetchBrands",
   async (_, { rejectWithValue }) => {
