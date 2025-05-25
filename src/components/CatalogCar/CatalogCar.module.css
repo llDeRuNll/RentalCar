@@ -78,13 +78,16 @@
 .readMoreBtn {
   display: inline-block;
   padding: 8px 16px;
-  background: #0b44cd;
-  color: #fff;
+  background: var(--button);
+  color: var(--white);
   border-radius: 4px;
   text-decoration: none;
   font-size: 14px;
-  transition: opacity 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
+
 .readMoreBtn:hover {
   opacity: 0.9;
+  color: var(--white);
+  background-color: var(--button-hover);
 }

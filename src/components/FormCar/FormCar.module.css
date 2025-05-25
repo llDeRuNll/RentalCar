@@ -46,7 +46,7 @@
   background: var(--inputs);
 }
 .formField:hover {
-  background: var(--grey);
+  background: var(--inputs);
 }
 .formField:focus {
   background: #e2e0e0;

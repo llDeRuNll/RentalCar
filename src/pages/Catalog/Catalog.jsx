@@ -82,7 +82,7 @@ const Catalog = () => {
       <div className={s.filter}>
         <FilterCars onSearch={setFilters} />
       </div>
-
+      {loading && <Loader />}
       <div className={s.grid}>
         {cars.map((car) => (
           <CatalogCar
@@ -93,8 +93,6 @@ const Catalog = () => {
           />
         ))}
       </div>
-
-      {loading && <Loader />}
 
       {!loading && hasMore && (
         <button className={s.loadMoreBtn} onClick={() => setPage((p) => p + 1)}>
