@@ -1,0 +1,17 @@
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 10px;
+  transition: color 250ms linear, transform 250ms linear;
+}
+.logoLink:hover {
+  transform: scale(1.1);
+}
+
+.logoRental {
+  color: #101828;
+}
+.logoCar {
+  color: #3470ff;
+}

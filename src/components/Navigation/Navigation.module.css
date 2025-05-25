@@ -1,0 +1,35 @@
+.navContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 120px;
+  border-bottom: 1px solid #f2f4f7;
+  background-color: #f2f4f7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+}
+.navLinksWrapper {
+  display: flex;
+  gap: 32px;
+}
+.activeLink {
+  color: #0b44cd;
+  padding: 10px;
+  transition: all 250ms linear;
+  &:hover {
+    color: #5377ce;
+    scale: 1.1;
+  }
+}
+.inactiveLink {
+  color: #101828;
+  padding: 10px;
+  transition: all 250ms linear;
+  &:hover {
+    color: #26282c;
+    scale: 1.1;
+  }
+}
