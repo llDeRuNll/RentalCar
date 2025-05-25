@@ -5,6 +5,7 @@ import { FaCar } from "react-icons/fa";
 import { GoGear } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
 import s from "./CatalogCarItem.module.css";
+import FormCar from "../FormCar/FormCar";
 
 const CatalogCarItem = ({ car }) => {
   const displayYear = car.year ?? car.yea ?? "N/A";

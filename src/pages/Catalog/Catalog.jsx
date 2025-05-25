@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import s from "./Catalog.module.css";
 import CatalogCar from "../../components/CatalogCar/CatalogCar";
 import FilterCars from "../../components/FilterCars/FilterCars";
-
+import Loader from "../../components/Loader/Loader";
 const API_URL = "https://car-rental-api.goit.global/cars";
 
 const Catalog = () => {
@@ -70,7 +70,7 @@ const Catalog = () => {
         ))}
       </div>
 
-      {loading && <p className={s.loading}>Loading...</p>}
+      {loading && <Loader />}
 
       {!loading && hasMore && (
         <button className={s.loadMoreBtn} onClick={() => setPage((p) => p + 1)}>
