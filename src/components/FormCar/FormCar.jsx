@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Slide, toast } from "react-toastify";
 import { object, string, date } from "yup";
 import s from "./FormCar.module.css";
-const RentCarForm = () => {
+const FormCar = () => {
   const initialValues = {
     name: "",
     email: "",
@@ -62,4 +62,4 @@ const RentCarForm = () => {
   );
 };
 
-export default RentCarForm;
+export default FormCar;

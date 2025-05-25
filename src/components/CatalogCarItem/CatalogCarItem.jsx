@@ -1,21 +1,19 @@
-import React from "react";
 import { TbCurrencyDollar } from "react-icons/tb";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { BsCalendar2Week, BsFuelPump } from "react-icons/bs";
 import { FaCar } from "react-icons/fa";
 import { GoGear } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
-
 import s from "./CatalogCarItem.module.css";
-import FormCar from "../FormCar/FormCar";
 
 const CatalogCarItem = ({ car }) => {
+  const displayYear = car.year ?? car.yea ?? "N/A";
+
   const {
     id,
     brand,
     model,
     type,
-    yea: year,
     img,
     mileage,
     rentalPrice,
@@ -30,6 +28,7 @@ const CatalogCarItem = ({ car }) => {
 
   const [, city, country] = address.split(",").map((p) => p.trim());
   const extras = [...accessories, ...functionalities];
+  const mileageFormatted = Intl.NumberFormat("en-US").format(mileage);
 
   return (
     <div className={s.mainContainer}>
@@ -51,7 +50,7 @@ const CatalogCarItem = ({ car }) => {
 
           <p className={s.adressMilleage}>
             <IoLocationOutline className={s.locationIcon} />
-            {city} {country} | Milleage: {mileage} km
+            {city} {country} | Mileage: {mileageFormatted} km
           </p>
 
           <p className={s.currencyContainer}>
@@ -79,7 +78,7 @@ const CatalogCarItem = ({ car }) => {
           <ul>
             <li>
               <BsCalendar2Week />
-              Year: {year}
+              Year: {displayYear}
             </li>
             <li>
               <FaCar />
