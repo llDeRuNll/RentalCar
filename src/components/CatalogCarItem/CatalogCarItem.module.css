@@ -1,0 +1,76 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-evenly;
+  column-gap: 72px;
+  margin-top: 84px;
+  padding: 32px;
+}
+
+.imageFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+  justify-content: center;
+  width: 640px;
+}
+.imageDescription {
+  width: 100%;
+  border-radius: 19px;
+  height: auto;
+}
+.containerInformation {
+  & > h2 {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33333;
+
+    color: #101828;
+  }
+  & > p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  & > ul li {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+}
+.containerInformation > ul li:not(:last-child) {
+  margin-bottom: 16px;
+}
+.containerInformation > ul li:last-child {
+  margin-bottom: 110px;
+}
+.idSpan {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+}
+
+.adressMilleage {
+  display: flex;
+  column-gap: 16px;
+  margin-bottom: 16px;
+
+  & > span {
+    display: flex;
+    align-items: center;
+  }
+}
+.currencyContainer {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #3470ff;
+  margin-bottom: 32px;
+}
+.currencyDescription {
+  margin-bottom: 68px;
+}

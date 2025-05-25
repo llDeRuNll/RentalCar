@@ -6,7 +6,6 @@ import FilterCars from "../../components/FilterCars/FilterCars";
 const API_URL = "https://car-rental-api.goit.global/cars";
 
 const Catalog = () => {
-  // тримаємо локальний стан фільтрів
   const [filters, setFilters] = useState({
     brand: "",
     rentalPrice: "",
@@ -19,7 +18,6 @@ const Catalog = () => {
   const [loading, setLoading] = useState(false);
   const prevFilters = useRef();
 
-  // якщо змінилися самі фільтри — скидати сторінку
   useEffect(() => {
     if (JSON.stringify(prevFilters.current) !== JSON.stringify(filters)) {
       prevFilters.current = filters;
@@ -28,7 +26,6 @@ const Catalog = () => {
     }
   }, [filters]);
 
-  // запит машин
   useEffect(() => {
     const fetchCars = async () => {
       setLoading(true);
@@ -66,7 +63,6 @@ const Catalog = () => {
 
   return (
     <div>
-      {/* передаємо колбек, який викликається по кліку Search */}
       <FilterCars onSearch={setFilters} />
       <div className={s.grid}>
         {cars.map((car) => (
