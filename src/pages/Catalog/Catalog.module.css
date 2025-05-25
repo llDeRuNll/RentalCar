@@ -1,0 +1,49 @@
+.grid {
+  display: grid;
+  gap: 24px;
+
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+  margin: 16px 0;
+}
+
+.loadMoreBtn {
+  display: block;
+  margin: 0 auto 32px;
+  padding: 8px 24px;
+  border: 1px solid #2979ff;
+  background: #fff;
+  color: #2979ff;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.loadMoreBtn:hover {
+  background: #2979ff;
+  color: #fff;
+}

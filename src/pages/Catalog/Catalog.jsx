@@ -1,7 +1,80 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 
-const Catalog = () => {
-  return <div>Catalog</div>;
+import s from "./Catalog.module.css";
+import CatalogCar from "../../components/CatalogCar/CatalogCar";
+const API_URL = "https://car-rental-api.goit.global/cars";
+
+const Catalog = ({ filters = {} }) => {
+  const [cars, setCars] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const prevFilters = useRef();
+
+  useEffect(() => {
+    if (JSON.stringify(prevFilters.current) !== JSON.stringify(filters)) {
+      prevFilters.current = filters;
+      setPage(1);
+      setCars([]);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      setLoading(true);
+      const params = new URLSearchParams();
+      params.append("page", page);
+      params.append("limit", 8);
+      if (filters.brand) params.append("brand", filters.brand);
+      if (filters.rentalPrice)
+        params.append("rentalPrice", filters.rentalPrice);
+      if (filters.carMileage?.from)
+        params.append("minMileage", filters.carMileage.from);
+      if (filters.carMileage?.to)
+        params.append("maxMileage", filters.carMileage.to);
+
+      try {
+        const res = await fetch(`${API_URL}?${params.toString()}`);
+        const { cars: newCars, totalPages } = await res.json();
+
+        setCars((prev) => (page === 1 ? newCars : [...prev, ...newCars]));
+        setHasMore(page < totalPages);
+      } catch (err) {
+        console.error("Error fetching cars:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, [
+    page,
+    filters.brand,
+    filters.rentalPrice,
+    filters.carMileage?.from,
+    filters.carMileage?.to,
+  ]);
+
+  return (
+    <div>
+      <div className={s.grid}>
+        {cars.map((car) => (
+          <CatalogCar key={car.id} car={car} />
+        ))}
+      </div>
+
+      {loading && <p className={s.loading}>Loading...</p>}
+
+      {!loading && hasMore && (
+        <button
+          className={s.loadMoreBtn}
+          onClick={() => setPage((prev) => prev + 1)}
+        >
+          Load more
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default Catalog;

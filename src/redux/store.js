@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { carReducer } from "./api/slice";
 
 import {
   persistStore,
@@ -12,6 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import carsReducer from "./carsFetch/slice";
 
 const persistConfig = {
   key: "cars",
@@ -19,7 +19,8 @@ const persistConfig = {
   storage,
 };
 
-const persistedCarsReducer = persistReducer(persistConfig, carReducer);
+// Обов'язково передаємо reducer як другий аргумент
+const persistedCarsReducer = persistReducer(persistConfig, carsReducer);
 
 export const store = configureStore({
   reducer: {
