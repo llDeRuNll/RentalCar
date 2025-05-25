@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import CatalogCarItem from "../../components/CatalogCarItem/CatalogCarItem";
 import Loader from "../../components/Loader/Loader";
-
-const API_URL = "https://car-rental-api.goit.global/cars";
+import { getCarById } from "../../api";
 
 const CatalogCarPage = () => {
   const { id } = useParams();
@@ -15,9 +13,7 @@ const CatalogCarPage = () => {
   useEffect(() => {
     const fetchCar = async () => {
       try {
-        const res = await fetch(`${API_URL}/${id}`);
-        if (!res.ok) throw new Error(`Status ${res.status}`);
-        const data = await res.json();
+        const data = await getCarById(id);
         setCar(data);
       } catch (err) {
         setError(err.message);
@@ -28,14 +24,9 @@ const CatalogCarPage = () => {
     fetchCar();
   }, [id]);
 
-  if (loading)
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  if (error) return <div>error {error}</div>;
-  if (!car) return <div>Auto not founded</div>;
+  if (loading) return <Loader />;
+  if (error) return <div>Error: {error}</div>;
+  if (!car) return <div>Auto not found</div>;
 
   return <CatalogCarItem car={car} />;
 };

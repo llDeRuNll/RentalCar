@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+
 import s from "./Catalog.module.css";
 import CatalogCar from "../../components/CatalogCar/CatalogCar";
 import FilterCars from "../../components/FilterCars/FilterCars";
 import Loader from "../../components/Loader/Loader";
-
-const API_URL = "https://car-rental-api.goit.global/cars";
+import { getCars } from "../../api";
 
 const Catalog = () => {
   const [filters, setFilters] = useState({
@@ -12,13 +12,11 @@ const Catalog = () => {
     rentalPrice: "",
     carMileage: { from: "", to: "" },
   });
-
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const prevFilters = useRef();
-
   const [favorites, setFavorites] = useState(() => {
     const stored = localStorage.getItem("favorites");
     return stored ? JSON.parse(stored) : [];
@@ -43,22 +41,17 @@ const Catalog = () => {
   }, [filters]);
 
   useEffect(() => {
-    const fetchCars = async () => {
+    const loadCars = async () => {
       setLoading(true);
-      const params = new URLSearchParams();
-      params.append("page", page);
-      params.append("limit", 8);
-      if (filters.brand) params.append("brand", filters.brand);
-      if (filters.rentalPrice)
-        params.append("rentalPrice", filters.rentalPrice);
-      if (filters.carMileage.from)
-        params.append("minMileage", filters.carMileage.from);
-      if (filters.carMileage.to)
-        params.append("maxMileage", filters.carMileage.to);
-
       try {
-        const res = await fetch(`${API_URL}?${params.toString()}`);
-        const { cars: newCars, totalPages } = await res.json();
+        const { cars: newCars, totalPages } = await getCars({
+          page,
+          limit: 8,
+          brand: filters.brand,
+          rentalPrice: filters.rentalPrice,
+          minMileage: filters.carMileage.from,
+          maxMileage: filters.carMileage.to,
+        });
         setCars((prev) => (page === 1 ? newCars : [...prev, ...newCars]));
         setHasMore(page < totalPages);
       } catch (err) {
@@ -67,15 +60,8 @@ const Catalog = () => {
         setLoading(false);
       }
     };
-
-    fetchCars();
-  }, [
-    page,
-    filters.brand,
-    filters.rentalPrice,
-    filters.carMileage.from,
-    filters.carMileage.to,
-  ]);
+    loadCars();
+  }, [page, filters]);
 
   return (
     <div>
@@ -93,7 +79,6 @@ const Catalog = () => {
           />
         ))}
       </div>
-
       {!loading && hasMore && (
         <button className={s.loadMoreBtn} onClick={() => setPage((p) => p + 1)}>
           Load more
